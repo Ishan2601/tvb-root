@@ -635,6 +635,11 @@ function setInitialFocusOnButton(simulator_params) {
 }
 
 function previousWizzardStep(currentForm, previous_action, div_id = 'div-simulator-parameters') {
+    $.ajax({
+        url: '/burst/set_fragment_url',
+        type: 'POST',
+        data: {"url": previous_action},
+    });
     const simulator_params = document.getElementById(div_id);
     simulator_params.removeChild(currentForm);
 

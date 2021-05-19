@@ -152,6 +152,13 @@ class SimulatorController(BurstBaseController):
         form.fill_from_trait(self.context.simulator)
         return form
 
+    @expose_json
+    def set_fragment_url(self, **data):
+        try:
+            self.context.add_last_loaded_form_url_to_session(data['url'])
+        except KeyError:
+            self.logger.error("Cannot set last loaded url to session because the required data was not found.")
+
     @expose_fragment('simulator_fragment')
     def set_connectivity(self, **data):
         session_stored_simulator, is_simulation_copy, is_simulation_load, _ = self.context.get_common_params()
