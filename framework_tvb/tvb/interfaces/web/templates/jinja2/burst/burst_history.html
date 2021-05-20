@@ -1,7 +1,7 @@
 <div>
     <h4>History</h4>
-    <a href="#" title="Import simulation from ZIP " class="column-control action-big-upload" onclick="showOverlay('/burst/get_upload_overlay', true);">Import</a>
-    <a href="#" title="Prepare a new simulation " class="column-control action action-big-new" onclick="resetToNewBurst();">New</a>
+    <button title="Import simulation from ZIP " class="column-control action-big-upload" onclick="showOverlay('/burst/get_upload_overlay', true);">Import</button>
+    <button title="Prepare a new simulation " class="column-control action action-big-new" onclick="resetToNewBurst();">New</button>
 
     <ul class="burst-list" id="burst-history">
        {% for burst in burst_list %}

@@ -68,6 +68,7 @@ class SimulatorController(BurstBaseController):
     KEY_IS_LOAD_AFTER_REDIRECT = "is_load_after_redirect"
     COPY_NAME_FORMAT = "copy_of_{}"
     BRANCH_NAME_FORMAT = "{}_branch{}"
+    KEY_GO_TO_NEXT_SIM_WIZARD = "go_to_next_wizard"
 
     def __init__(self):
         BurstBaseController.__init__(self)
@@ -266,7 +267,9 @@ class SimulatorController(BurstBaseController):
         session_stored_simulator, is_simulation_copy, is_simulation_load, _ = self.context.get_common_params()
 
         if cherrypy.request.method == POST_REQUEST:
-            self.context.add_last_loaded_form_url_to_session(SimulatorWizzardURLs.SET_MODEL_PARAMS_URL)
+            set_next_wizard = eval(data[SimulatorController.KEY_GO_TO_NEXT_SIM_WIZARD])
+            if set_next_wizard:
+                self.context.add_last_loaded_form_url_to_session(SimulatorWizzardURLs.SET_MODEL_PARAMS_URL)
             form = SimulatorModelFragment()
             form.fill_from_post(data)
             form.fill_trait(session_stored_simulator)
