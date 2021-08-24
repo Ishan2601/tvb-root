@@ -39,6 +39,7 @@ import shutil
 import sys
 from functools import wraps
 from types import FunctionType
+
 from tvb.config.init.model_manager import reset_database
 from tvb.config.init.initializer import initialize
 from tvb.core.neocom.h5 import REGISTRY
@@ -162,7 +163,7 @@ class BaseTestCase(object):
         """
         BaseStorageTestCase.delete_projects_folders()
 
-        for folder in [os.path.join(TvbProfile.current.TVB_STORAGE, ExportManager.EXPORT_FOLDER_NAME),
+        for folder in [os.path.join(TvbProfile.current.TVB_STORAGE, StorageInterface.EXPORT_FOLDER_NAME),
                        os.path.join(TvbProfile.current.TVB_STORAGE, StorageInterface.TEMP_FOLDER)]:
             if os.path.exists(folder):
                 shutil.rmtree(folder)

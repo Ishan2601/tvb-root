@@ -36,6 +36,7 @@ Service Layer for the Project entity.
 """
 
 import formencode
+
 from tvb.basic.logger.builder import get_logger
 from tvb.core.adapters.abcadapter import ABCAdapter
 from tvb.core.adapters.inputs_processor import review_operation_inputs_from_adapter
@@ -459,6 +460,7 @@ class ProjectService:
             data = {}
             is_group = False
             group_op = None
+
             #  Filter by dt.type, otherwise Links to individual DT inside a group will be mistaken
             if dt.type == "DataTypeGroup" and dt.parent_operation.operation_group is not None:
                 is_group = True
@@ -875,7 +877,6 @@ class ProjectService:
         paths = []
         for lnk_dt in dao.get_linked_datatypes_in_project(project.id):
             # get datatype as a mapped type
-            lnk_dt = dao.get_datatype_by_gid(lnk_dt.gid)
             path = h5.path_for_stored_index(lnk_dt)
             if path is not None:
                 paths.append(path)
